@@ -20,7 +20,7 @@ const SocialLinks = () => (
               rel="noopener noreferrer"
             >
               <S.IconWrapper>
-                <Icon />
+                <Icon/>
               </S.IconWrapper>
             </S.SocialLinksLink>
           </S.SocialLinksItem>
