@@ -5,6 +5,9 @@ import getThemeColor from "../../utils/getThemeColor"
 
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
+import { ArrowForward as Forward } from "styled-icons/material/ArrowForward"
+import { ArrowBack as Back } from "styled-icons/material/ArrowBack"
+
 import * as S from "./styled"
 
 const Pagination = ({
@@ -24,7 +27,7 @@ const Pagination = ({
         bg={getThemeColor()}
         duration={0.6}
       >
-        página antetior
+        <Back size={20} /> página antetior
       </AniLink>
     )}
     <p>
@@ -38,7 +41,7 @@ const Pagination = ({
         bg={getThemeColor()}
         duration={0.6}
       >
-        próxima página ->
+        próxima página <Forward size={20} />
       </AniLink>
     )}
   </S.PaginationWrapper>
