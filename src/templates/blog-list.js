@@ -6,6 +6,8 @@ import SEO from "../components/seo"
 import PostItem from "../components/PostItem"
 import Pagination from "../components/Pagination"
 
+import * as S from "../components/ListWrapper/styled"
+
 const BlogList = props => {
   const postList = props.data.allMarkdownRemark.edges
 
@@ -17,33 +19,37 @@ const BlogList = props => {
 
   return (
     <Layout>
-      <SEO title="Home"/>
-      {postList.map(
-        ({
-           node: {
-             fields: { slug },
-             frontmatter: { background, category, date, description, title },
-             timeToRead,
-           },
-         }) => (
-          <PostItem
-            slug={slug}
-            background={background}
-            category={category}
-            date={date}
-            timeToRead={timeToRead}
-            title={title}
-            description={description}
-          />
-        ),
-      )}
+      <SEO title="Home" />
+      <S.ListWrapper>
+        {postList.map(
+          ({
+            node: {
+              fields: { slug },
+              frontmatter: { background, category, date, description, title },
+              timeToRead,
+            },
+          }) => (
+            <PostItem
+              slug={slug}
+              background={background}
+              category={category}
+              date={date}
+              timeToRead={timeToRead}
+              title={title}
+              description={description}
+            />
+          )
+        )}
+      </S.ListWrapper>
+
       <Pagination
         isFirst={isFirst}
         isLast={isLast}
         currentPage={currentPage}
         numPages={numPages}
         prevPage={prevPage}
-        nextPage={nextPage}/>
+        nextPage={nextPage}
+      />
     </Layout>
   )
 }
@@ -51,7 +57,7 @@ const BlogList = props => {
 export const query = graphql`
   query PostList($skip: Int!, $limit: Int!) {
     allMarkdownRemark(
-      sort: {fields: frontmatter___date, order: DESC}
+      sort: { fields: frontmatter___date, order: DESC }
       limit: $limit
       skip: $skip
     ) {
