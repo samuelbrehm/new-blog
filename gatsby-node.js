@@ -27,44 +27,44 @@ exports.createPages = ({ graphql, actions }) => {
 
   return graphql(`
     {
-  allMarkdownRemark(sort: {fields: frontmatter___date, order: DESC}) {
-    edges {
-      node {
-        fields {
-          slug
-        }
-        frontmatter {
-          background
-          category
-          date(locale: "pt-br", formatString: "DD [de] MMM [de] YYYY")
-          description
-          title
-        }
-        timeToRead
-        wordCount {
-          words
-        }
-      }
-      next {
-        frontmatter {
-          title
-        }
-        fields {
-          slug
-        }
-      }
-      previous {
-        frontmatter {
-          title
-        }
-        fields {
-          slug
+      allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
+        edges {
+          node {
+            fields {
+              slug
+            }
+            frontmatter {
+              background
+              category
+              date(locale: "pt-br", formatString: "DD [de] MMM [de] YYYY")
+              description
+              title
+              image
+            }
+            timeToRead
+            wordCount {
+              words
+            }
+          }
+          next {
+            frontmatter {
+              title
+            }
+            fields {
+              slug
+            }
+          }
+          previous {
+            frontmatter {
+              title
+            }
+            fields {
+              slug
+            }
+          }
         }
       }
     }
-  }
-}
-
   `).then(result => {
     const posts = result.data.allMarkdownRemark.edges
 
@@ -91,8 +91,8 @@ exports.createPages = ({ graphql, actions }) => {
           limit: postsPerPage,
           skip: index * postsPerPage,
           numPages,
-          currentPage: index + 1
-        }
+          currentPage: index + 1,
+        },
       })
     })
   })
